@@ -357,12 +357,17 @@ ces_plots<-function(data=df_1_clean, start_date="2019-12-01", title_text=""){
 
 plots_1<-ces_plots(data=df_1_clean, title_text = "- U.S Total")
 plots_1[[2]]
-
+ggsave(paste0("plots/national_chart_1_",
+              substr(Sys.Date(),0,7),".png"))
 
 plots_state_1<-ces_plots(data=df_state_1_clean, title_text = "- Florida")
 plots_state_1[[2]]
-
+ggsave(paste0("plots/state_florida_chart_1_",
+              substr(Sys.Date(),0,7),".png"))
 
 plots_cities_1<-ces_plots(data=df_cities_1_clean, title_text = "- Miami")
-
 plots_cities_1[[2]]
+ggsave(paste0("plots/city_miami_chart_1_",
+              substr(Sys.Date(),0,7),".png"))
+
+
