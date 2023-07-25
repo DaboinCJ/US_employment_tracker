@@ -259,7 +259,7 @@ ces_plots<-function(data=df_1_clean, start_date="2019-12-01", title_text=""){
     filter(date >= start_date) %>%
     ggplot(aes(x=date, y=value, group=industry_name,
                color=industry_name_2))+
-    geom_line(size=1)+
+    geom_line(linewidth=1)+
     geom_point(size=1)+
     ggrepel::geom_label_repel(aes(label=ifelse(date == max(data$date),
                                                paste0(NUM(value,0)),NA)))+
@@ -271,7 +271,7 @@ ces_plots<-function(data=df_1_clean, start_date="2019-12-01", title_text=""){
           legend.title.align = 0.3,
           legend.title = element_text(size=15), 
           legend.key.size = unit(1.4, "cm"))+
-    scale_y_continuous(labels=comma)+
+    scale_y_continuous(labels=scales::comma)+
     scale_x_date(date_labels = "%b %y")+
     scale_color_manual(values=set_1_no_yellow)+
     labs(title = paste("Monthly Jobs by Sector"),
@@ -288,7 +288,7 @@ ces_plots<-function(data=df_1_clean, start_date="2019-12-01", title_text=""){
                 select(value_100=value,seriesID), by="seriesID") %>% 
     ggplot(aes(x=date, y=value/value_100, group=industry_name_2,
                color=industry_name_2))+
-    geom_line(size=1)+
+    geom_line(linewidth=1)+
     geom_point(size=1)+
     ggrepel::geom_label_repel(aes(label=ifelse(date == max(data$date),
                                                paste0(round(value/value_100*100,0)),NA)),

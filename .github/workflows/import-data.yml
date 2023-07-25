@@ -17,6 +17,7 @@ jobs:
             any::dplyr
             any::stringr
             any::ggplot2
+            any::scales
             any::ggrepel
             any::patchwork
             github::keberwein/blscrapeR
