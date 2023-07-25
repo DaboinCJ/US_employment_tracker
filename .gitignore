@@ -1,6 +1,9 @@
 # Project files
 .Rproj
 
+# keys file
+set_bls_key.R
+
 # History files
 .Rhistory
 .Rapp.history
