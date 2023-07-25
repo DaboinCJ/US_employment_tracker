@@ -15,6 +15,7 @@ jobs:
           packages: |
             any::readr
             any::dplyr
+            any::stringr
             any::ggplot2
             github::keberwein/blscrapeR
 

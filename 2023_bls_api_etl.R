@@ -39,8 +39,9 @@ library(readr)
 # devtools::install_package("keberwein/blscrapeR")
 library(blscrapeR)
 library(ggplot2)
+library(stringr)
 options(scipen=999)# to see large numbers without scientific notation
-Sys.setlocale("LC_ALL", "C") 
+
 
 # First time, set up your BLS key to connect the API
 ## I'm not sharing my key. Neither you should. It's stored in a sepparate script where
@@ -60,8 +61,8 @@ Sys.getenv("BLS_KEY")
 ## It is important because the API procesess FIPS+MSA+COUNTY CODES
 county_msa<-read_delim("raw/Crosswalk/regions/Census CBP/cbp_msa_county_reference12.txt", delim=",") %>% 
   mutate(county=paste0(fipstate,fipscty)) 
+county_msa$state_title<-stringr::str_remove(county_msa$name_county,pattern="(.*?), ")
 
-county_msa$state_title<-base::gsub(pattern="(.*?), ",replacement="",x=county_msa$name_county)
 # 1.0 Define data Series Codes ------------------------------------
 
 ##1.1 National CES by SECTOR---------------------------------------
@@ -89,7 +90,7 @@ selected_state<-county_msa %>%
 
 series_state_1<-paste("SMU",
                       selected_state,
-                      str_remove(naics_1_codes_api$code,"CEU"),sep ="" )
+                      stringr::str_remove(naics_1_codes_api$code,"CEU"),sep ="" )
 
 ##1.3 City-wise CES by SECTOR---------------------------------------
 all_cities<-unique(county_msa$name_msa)
@@ -102,7 +103,7 @@ selected_city<-county_msa %>%
   ## if the city has many states, county how many counties it has per state
   summarise(count=n()) %>% 
   mutate(code=paste0(fipstate,msa)) %>% 
-  filter(str_detect(name_msa,selected_city_name)) %>%
+  filter(stringr::str_detect(name_msa,selected_city_name)) %>%
   # keep the state code with the largest number of counties
   filter(count==max(count)) %>% 
   pull(code)
