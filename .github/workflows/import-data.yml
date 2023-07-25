@@ -1,0 +1,33 @@
+on:
+  push:
+    branches: main
+
+jobs:
+  import-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install main packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::readr
+            any::dplyr
+            any::ggplot2
+            any::blscrapeR
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Run code
+        run: Rscript -e 'source("2023_bls_api_etl.R")' 
+
+      - name: Commit results
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add plots/.
+          git commit -m 'Plots updated' || echo "No changes to commit"
+          git push origin || echo "No changes to commit"        
