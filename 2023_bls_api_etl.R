@@ -40,6 +40,7 @@ library(readr)
 library(blscrapeR)
 library(ggplot2)
 options(scipen=999)# to see large numbers without scientific notation
+Sys.setlocale("LC_ALL", "C") 
 
 # First time, set up your BLS key to connect the API
 ## I'm not sharing my key. Neither you should. It's stored in a sepparate script where
@@ -58,9 +59,9 @@ Sys.getenv("BLS_KEY")
 # County composition of MSAs - Merge this with county level estimates
 ## It is important because the API procesess FIPS+MSA+COUNTY CODES
 county_msa<-read_delim("raw/Crosswalk/regions/Census CBP/cbp_msa_county_reference12.txt", delim=",") %>% 
-  mutate(county=paste0(fipstate,fipscty)) %>% 
-  mutate(state_title=base::gsub(pattern="(.*?), ",replacement="",x=name_county))
+  mutate(county=paste0(fipstate,fipscty)) 
 
+county_msa$state_title<-base::gsub(pattern="(.*?), ",replacement="",x=county_msa$name_county)
 # 1.0 Define data Series Codes ------------------------------------
 
 ##1.1 National CES by SECTOR---------------------------------------
