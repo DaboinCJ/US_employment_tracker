@@ -55,15 +55,6 @@ Sys.getenv("BLS_KEY")
 
 # 0.2 Load Data ----------------------------------
 
-## Example: How to select  all counties
-counties<-blscrapeR::area_titles %>% 
-  filter(str_detect(area_title,"County"))
-
-## Example: How to select New York related areas (counties and metro areas)
-city<-blscrapeR::area_titles %>% 
-  filter(str_detect(area_fips,"CS"))
-
-
 # County composition of MSAs - Merge this with county level estimates
 ## It is important because the API procesess FIPS+MSA+COUNTY CODES
 county_msa<-read_delim("raw/Crosswalk/regions/Census CBP/cbp_msa_county_reference12.txt", delim=",") %>% 
