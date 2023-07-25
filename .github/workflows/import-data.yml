@@ -16,7 +16,7 @@ jobs:
             any::readr
             any::dplyr
             any::ggplot2
-            any::blscrapeR
+            github::blscrapeR
 
       - name: Check out repository
         uses: actions/checkout@v3
