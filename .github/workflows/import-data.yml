@@ -20,7 +20,7 @@ jobs:
             any::scales
             any::ggrepel
             any::patchwork
-            github::keberwein/blscrapeR
+            github::keberwein/blscrapeR  
 
       - name: Check out repository
         uses: actions/checkout@v3

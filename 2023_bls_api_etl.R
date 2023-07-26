@@ -23,11 +23,11 @@
 ## CREATE GITHUB PROJECT: DONE 
 ## THINK ABOUT HOW TO HANDLE API KEYS IN GITHUB: DONE 
 ## SET UP GITHUB ACTION (https://rfortherestofus.com/2023/05/github-actions/)
-### HANDLE PACKAGES: DONE (NOT CLEAR WHAT HAPPENS W BLSCRAPR)
+### HANDLE PACKAGES: DONE 
 ## STREAMLINE CODE SO: 
-### NAITONAL CHARTS ARE GENERATED AND SAVED 
-### NATIONAL DATASET IS GENERATED AND SAVED
-### METROPOLITAN AREA DATASETS ARE GENERATED
+### NAITONAL CHARTS ARE GENERATED AND SAVED: DONE
+### NATIONAL DATASET IS GENERATED AND SAVED: DONE
+### STATES DATASETS ARE GENERATED: 
 ## CREATE SHINY APP
 ### HOST IT IN daboanalytics, AWS, SATURN CLOUD
 ## PUBLISH SOMEWHERE (BLOG?)
@@ -233,6 +233,7 @@ if(run_all==TRUE){
 }
 
 #3.1  Series identified manually -----------------------------------------
+
 first_level<-"Total Nonfarm All Employees"
 second_level_sec<-c("Goods Producing All Employees","Service-Providing All Employees","Private Service Providing All Employees")
 third_level_sec<-c("Retail Trade All Employees","Wholesale Trade All Employees","Non-Durable Goods All Employees","Durable Goods All Employees",
@@ -310,7 +311,7 @@ ces_plots<-function(data=df_1_clean, start_date="2019-12-01", title_text=""){
           legend.title = element_text(size=15), 
           legend.key.size = unit(1.4, "cm"))+
     scale_y_continuous()+
-    scale_x_date(date_breaks = "1 months",date_labels = "%b %y")+
+    scale_x_date(date_breaks = "4 months",date_labels = "%b %y")+
     scale_color_manual(values=set_1_no_yellow)+
     labs(title = paste("Recent evolution of Nofarm employment", title_text),
          color="Sector",
@@ -338,7 +339,7 @@ ces_plots<-function(data=df_1_clean, start_date="2019-12-01", title_text=""){
           legend.title = element_text(size=15), 
           legend.key.size = unit(1.4, "cm"))+
     scale_y_continuous()+
-    scale_x_date(date_breaks = "1 months",date_labels = "%b %y")+
+    scale_x_date(date_breaks = "4 months",date_labels = "%b %y")+
     scale_fill_manual(values=set_1_no_yellow)+
     theme(legend.position = "none")+
     labs(title = NULL,
@@ -357,18 +358,18 @@ ces_plots<-function(data=df_1_clean, start_date="2019-12-01", title_text=""){
 
 
 plots_1<-ces_plots(data=df_1_clean, title_text = "- U.S Total")
-plots_1[[2]]
-ggsave(paste0("plots/national_chart_1_",
+
+ggsave(plots_1[[2]],paste0("plots/national_chart_1_",
               substr(Sys.Date(),0,7),".png"))
 
 plots_state_1<-ces_plots(data=df_state_1_clean, title_text = "- Florida")
-plots_state_1[[2]]
-ggsave(paste0("plots/state_florida_chart_1_",
+
+ggsave(plots_state_1[[2]],paste0("plots/state_florida_chart_1_",
               substr(Sys.Date(),0,7),".png"))
 
 plots_cities_1<-ces_plots(data=df_cities_1_clean, title_text = "- Miami")
-plots_cities_1[[2]]
-ggsave(paste0("plots/city_miami_chart_1_",
+
+ggsave(plots_cities_1[[2]],paste0("plots/city_miami_chart_1_",
               substr(Sys.Date(),0,7),".png"))
 
 
