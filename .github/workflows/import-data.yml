@@ -32,6 +32,8 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add plots/.
+          git add plots/city_miami_chart_1_2023-07.png
+          git add plots/national_chart_1_2023-07.png
+          git add plots/state_florida_chart_1_2023-07.png
           git commit -m 'Plots updated' || echo "No changes to commit"
           git push origin || echo "No changes to commit"        
