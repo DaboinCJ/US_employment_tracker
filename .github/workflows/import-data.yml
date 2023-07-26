@@ -1,6 +1,6 @@
 on:
   push:
-    branches: main
+    branches: new_etl_report
 
 jobs:
   import-data:
@@ -27,9 +27,9 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Run code
-        # run: Rscript -e 'source("2023_bls_api_etl.R")'
-        run: Rscript -e 'source("0_main.R")'
+      # - name: Run code
+      #   # run: Rscript -e 'source("2023_bls_api_etl.R")'
+      #   run: Rscript -e 'source("0_main.R")'
 
       - name: Render Quarto Project
         uses: quarto-dev/quarto-actions/render@v2
@@ -44,7 +44,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add data/*
-          git add plots/*
+          git add 01_report_files/*
+          git add 01_report.html
           git commit -m 'Data and plots' || echo "No changes to commit"
           git push origin || echo "No changes to commit"        
