@@ -15,9 +15,11 @@ jobs:
           packages: |
             any::readr
             any::dplyr
+            any::lubridate
             any::stringr
             any::ggplot2
             any::scales
+            any::gt
             any::ggrepel
             any::patchwork
             github::keberwein/blscrapeR  
@@ -26,7 +28,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run code
-        run: Rscript -e 'source("2023_bls_api_etl.R")' 
+        # run: Rscript -e 'source("2023_bls_api_etl.R")'
+        run: Rscript -e 'source("0_main.R")'
+
+      - name: Render Quarto Project
+        uses: quarto-dev/quarto-actions/render@v2
+        with:
+          to: html # If set, it will be equivalent to `quarto render --to html`
+          path: source-folder # By default, the current working dir is used i.e `quarto render .`
 
       - name: Commit results
         env: 
