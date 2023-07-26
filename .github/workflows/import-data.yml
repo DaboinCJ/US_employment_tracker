@@ -29,11 +29,12 @@ jobs:
         run: Rscript -e 'source("2023_bls_api_etl.R")' 
 
       - name: Commit results
+        env: 
+          REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+          username: github-actions
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add plots/city_miami_chart_1_2023-07.png
-          git add plots/national_chart_1_2023-07.png
-          git add plots/state_florida_chart_1_2023-07.png
-          git commit -m 'Plots updated' || echo "No changes to commit"
+          git add data/*
+          git commit -m 'Data updated' || echo "No changes to commit"
           git push origin || echo "No changes to commit"        

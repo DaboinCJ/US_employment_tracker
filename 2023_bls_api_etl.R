@@ -172,7 +172,15 @@ df_cities_1_clean<-df_cities_1 %>%
   left_join(naics_1_codes_api,by=c("code"="industry_code")) %>% 
   mutate(value=value*1000)
 
-# 2.4 RUN ETLS at two digits level-------------------
+
+
+#2.4 Save the data -----------------------------------------------------------
+write_rds(df_1_clean,"data/df_1_clean.rds")
+write_rds(df_state_1_clean,"data/df_state_1_clean.rds")
+write_rds(df_cities_1_clean,"data/df_cities_1_clean.rds")
+
+
+# 2.5 RUN ETLS at two digits level-------------------
 run_all<-FALSE
 
 if(run_all==TRUE){
@@ -347,20 +355,20 @@ ces_plots<-function(data=df_1_clean, start_date="2019-12-01", title_text=""){
   return(list(plot_0,plot_1,complement))
 }
 
-
-plots_1<-ces_plots(data=df_1_clean, title_text = "- U.S Total")
-plots_1[[2]]
-ggsave(paste0("plots/national_chart_1_",
-              substr(Sys.Date(),0,7),".png"))
-
-plots_state_1<-ces_plots(data=df_state_1_clean, title_text = "- Florida")
-plots_state_1[[2]]
-ggsave(paste0("plots/state_florida_chart_1_",
-              substr(Sys.Date(),0,7),".png"))
-
-plots_cities_1<-ces_plots(data=df_cities_1_clean, title_text = "- Miami")
-plots_cities_1[[2]]
-ggsave(paste0("plots/city_miami_chart_1_",
-              substr(Sys.Date(),0,7),".png"))
+# 
+# plots_1<-ces_plots(data=df_1_clean, title_text = "- U.S Total")
+# plots_1[[2]]
+# ggsave(paste0("plots/national_chart_1_",
+#               substr(Sys.Date(),0,7),".png"))
+# 
+# plots_state_1<-ces_plots(data=df_state_1_clean, title_text = "- Florida")
+# plots_state_1[[2]]
+# ggsave(paste0("plots/state_florida_chart_1_",
+#               substr(Sys.Date(),0,7),".png"))
+# 
+# plots_cities_1<-ces_plots(data=df_cities_1_clean, title_text = "- Miami")
+# plots_cities_1[[2]]
+# ggsave(paste0("plots/city_miami_chart_1_",
+#               substr(Sys.Date(),0,7),".png"))
 
 
