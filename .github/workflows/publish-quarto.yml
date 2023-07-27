@@ -20,6 +20,7 @@ jobs:
             any::lubridate
             any::stringr
             any::ggplot2
+            any::gt
             any::scales
             any::ggrepel
             any::patchwork
