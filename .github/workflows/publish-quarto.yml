@@ -1,6 +1,6 @@
 on:
-  schedule:
-    - cron: '36 09,10,12 27 7 *'
+  push:
+    branges: main
 # on:
 #   push:
 #     branches: new_etl_report
