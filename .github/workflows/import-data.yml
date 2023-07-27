@@ -1,6 +1,6 @@
 on:
   push:
-    branches: new_etl_report
+    branches: main
 
 jobs:
   import-data:
