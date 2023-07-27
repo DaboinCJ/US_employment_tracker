@@ -3,9 +3,6 @@ on:
     branges: main
   # schedule:
   #   - cron: '42 10 * * *'
-# on:
-#   push:
-#     branches: new_etl_report
 
 jobs:
   update-report:
