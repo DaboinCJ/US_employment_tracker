@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Carlos Daboin">
+
+<title>US employment tracker</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="01_report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="01_report_files/libs/quarto-html/quarto.js"></script>
+<script src="01_report_files/libs/quarto-html/popper.min.js"></script>
+<script src="01_report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="01_report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="01_report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="01_report_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="01_report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="01_report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="01_report_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#nation-level-report" id="toc-nation-level-report" class="nav-link active" data-scroll-target="#nation-level-report">Nation-level report</a>
+  <ul class="collapse">
+  <li><a href="#by-broad-sectors" id="toc-by-broad-sectors" class="nav-link" data-scroll-target="#by-broad-sectors">By broad sectors</a></li>
+  <li><a href="#by-detailed-sectors" id="toc-by-detailed-sectors" class="nav-link" data-scroll-target="#by-detailed-sectors">By detailed sectors</a></li>
+  </ul></li>
+  <li><a href="#state-level-report" id="toc-state-level-report" class="nav-link" data-scroll-target="#state-level-report">State-level report</a>
+  <ul class="collapse">
+  <li><a href="#by-detailed-sectors-1" id="toc-by-detailed-sectors-1" class="nav-link" data-scroll-target="#by-detailed-sectors-1">By detailed sectors</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">US employment tracker</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Carlos Daboin </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Report last updated 2023-07-26.</p>
+<section id="nation-level-report" class="level2">
+<h2 class="anchored" data-anchor-id="nation-level-report">Nation-level report</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="fwpkddmhus" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#fwpkddmhus) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#fwpkddmhus) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#fwpkddmhus) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#fwpkddmhus) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#fwpkddmhus) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#fwpkddmhus) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#fwpkddmhus) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#fwpkddmhus) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#fwpkddmhus) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#fwpkddmhus) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#fwpkddmhus) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#fwpkddmhus) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#fwpkddmhus) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#fwpkddmhus) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#fwpkddmhus) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#fwpkddmhus) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#fwpkddmhus) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#fwpkddmhus) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#fwpkddmhus) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#fwpkddmhus) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#fwpkddmhus) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#fwpkddmhus) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#fwpkddmhus) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#fwpkddmhus) .gt_left {
+  text-align: left;
+}
+
+:where(#fwpkddmhus) .gt_center {
+  text-align: center;
+}
+
+:where(#fwpkddmhus) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#fwpkddmhus) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#fwpkddmhus) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#fwpkddmhus) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#fwpkddmhus) .gt_super {
+  font-size: 65%;
+}
+
+:where(#fwpkddmhus) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#fwpkddmhus) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#fwpkddmhus) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#fwpkddmhus) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#fwpkddmhus) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#fwpkddmhus) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#fwpkddmhus) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Update status</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Nation-level estimates</td>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Last period avaliable">Last period avaliable</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Preliminary estimates">Preliminary estimates</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Last period avaliable" class="gt_row gt_right">2023-06-01</td>
+<td headers="Preliminary estimates" class="gt_row gt_right">2023-06-01, 2023-05-01</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<section id="by-broad-sectors" class="level3">
+<h3 class="anchored" data-anchor-id="by-broad-sectors">By broad sectors</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="by-detailed-sectors" class="level3">
+<h3 class="anchored" data-anchor-id="by-detailed-sectors">By detailed sectors</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="state-level-report" class="level2">
+<h2 class="anchored" data-anchor-id="state-level-report">State-level report</h2>
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="onztvtaihi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+:where(#onztvtaihi) .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+:where(#onztvtaihi) .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+:where(#onztvtaihi) .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+:where(#onztvtaihi) .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+:where(#onztvtaihi) .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:where(#onztvtaihi) .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+:where(#onztvtaihi) .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+:where(#onztvtaihi) .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+:where(#onztvtaihi) .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+:where(#onztvtaihi) .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+:where(#onztvtaihi) .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+:where(#onztvtaihi) .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+:where(#onztvtaihi) .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+:where(#onztvtaihi) .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#onztvtaihi) .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+:where(#onztvtaihi) .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+:where(#onztvtaihi) .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#onztvtaihi) .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+:where(#onztvtaihi) .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#onztvtaihi) .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+:where(#onztvtaihi) .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#onztvtaihi) .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+:where(#onztvtaihi) .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:where(#onztvtaihi) .gt_left {
+  text-align: left;
+}
+
+:where(#onztvtaihi) .gt_center {
+  text-align: center;
+}
+
+:where(#onztvtaihi) .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+:where(#onztvtaihi) .gt_font_normal {
+  font-weight: normal;
+}
+
+:where(#onztvtaihi) .gt_font_bold {
+  font-weight: bold;
+}
+
+:where(#onztvtaihi) .gt_font_italic {
+  font-style: italic;
+}
+
+:where(#onztvtaihi) .gt_super {
+  font-size: 65%;
+}
+
+:where(#onztvtaihi) .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+:where(#onztvtaihi) .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+:where(#onztvtaihi) .gt_indent_1 {
+  text-indent: 5px;
+}
+
+:where(#onztvtaihi) .gt_indent_2 {
+  text-indent: 10px;
+}
+
+:where(#onztvtaihi) .gt_indent_3 {
+  text-indent: 15px;
+}
+
+:where(#onztvtaihi) .gt_indent_4 {
+  text-indent: 20px;
+}
+
+:where(#onztvtaihi) .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  <thead class="gt_header">
+    <tr>
+      <td colspan="2" class="gt_heading gt_title gt_font_normal" style="">Update status</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">State-level estimates</td>
+    </tr>
+  </thead>
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Last period avaliable">Last period avaliable</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Preliminary estimates">Preliminary estimates</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Last period avaliable" class="gt_row gt_right">2023-06-01</td>
+<td headers="Preliminary estimates" class="gt_row gt_right">2023-06-01</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>We first show the broad view, then the detailed one.</p>
+<section id="work-in-progress" class="level4">
+<h4 class="anchored" data-anchor-id="work-in-progress">Work in progress…</h4>
+<div class="cell">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>lista<span class="ot">&lt;-</span><span class="fu">list</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (states <span class="cf">in</span> <span class="fu">sort</span>(<span class="fu">unique</span>(df_state_1_clean<span class="sc">$</span>state_title))) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  plots_1<span class="ot">&lt;-</span><span class="fu">ces_plots</span>(<span class="at">data=</span><span class="fu">filter</span>(df_state_1_clean,state_title<span class="sc">==</span>states), </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">title_text =</span> <span class="fu">paste0</span>(<span class="st">"-"</span>,states))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  plots_2<span class="ot">&lt;-</span><span class="fu">ces_plots</span>(<span class="at">data=</span><span class="fu">filter</span>(df_state_2_clean,state_title<span class="sc">==</span>states), </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">title_text =</span> <span class="fu">paste0</span>(<span class="st">"-"</span>,states))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>lista[[states]]<span class="ot">&lt;-</span>  <span class="fu">list</span>(plots_1[[<span class="dv">2</span>]],plots_2[[<span class="dv">2</span>]])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>lista[<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Alabama
+$Alabama[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Alabama[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Alaska
+$Alaska[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Alaska[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Arizona
+$Arizona[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Arizona[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Arkansas
+$Arkansas[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Arkansas[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$California
+$California[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-9.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$California[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-10.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Colorado
+$Colorado[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-11.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Colorado[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-12.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Connecticut
+$Connecticut[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-13.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Connecticut[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-14.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Delaware
+$Delaware[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-15.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Delaware[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-16.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Florida
+$Florida[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-17.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Florida[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-18.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Georgia
+$Georgia[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-19.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Georgia[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-20.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Hawaii
+$Hawaii[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-21.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Hawaii[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-22.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Idaho
+$Idaho[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-23.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Idaho[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-24.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Illinois
+$Illinois[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-25.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Illinois[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-26.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Indiana
+$Indiana[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-27.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Indiana[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-28.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Iowa
+$Iowa[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-29.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Iowa[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-30.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Kansas
+$Kansas[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-31.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Kansas[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-32.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Kentucky
+$Kentucky[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-33.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Kentucky[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-34.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Louisiana
+$Louisiana[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-35.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Louisiana[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-36.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Maine
+$Maine[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-37.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Maine[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-38.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Maryland
+$Maryland[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-39.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Maryland[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-40.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Massachusetts
+$Massachusetts[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-41.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Massachusetts[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-42.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Michigan
+$Michigan[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-43.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Michigan[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-44.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Minnesota
+$Minnesota[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-45.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Minnesota[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-46.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Mississippi
+$Mississippi[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-47.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Mississippi[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-48.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Missouri
+$Missouri[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-49.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Missouri[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-50.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Montana
+$Montana[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-51.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Montana[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-52.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Nebraska
+$Nebraska[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-53.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Nebraska[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-54.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Nevada
+$Nevada[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-55.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Nevada[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-56.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`New Hampshire`
+$`New Hampshire`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-57.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`New Hampshire`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-58.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`New Jersey`
+$`New Jersey`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-59.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`New Jersey`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-60.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`New Mexico`
+$`New Mexico`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-61.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`New Mexico`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-62.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`New York`
+$`New York`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-63.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`New York`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-64.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`North Carolina`
+$`North Carolina`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-65.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`North Carolina`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-66.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`North Dakota`
+$`North Dakota`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-67.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`North Dakota`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-68.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Ohio
+$Ohio[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-69.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Ohio[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-70.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Oklahoma
+$Oklahoma[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-71.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Oklahoma[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-72.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Oregon
+$Oregon[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-73.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Oregon[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-74.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Pennsylvania
+$Pennsylvania[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-75.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Pennsylvania[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-76.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`Rhode Island`
+$`Rhode Island`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-77.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`Rhode Island`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-78.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`South Carolina`
+$`South Carolina`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-79.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`South Carolina`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-80.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`South Dakota`
+$`South Dakota`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-81.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`South Dakota`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-82.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Tennessee
+$Tennessee[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-83.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Tennessee[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-84.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Texas
+$Texas[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-85.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Texas[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-86.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Utah
+$Utah[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-87.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Utah[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-88.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Vermont
+$Vermont[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-89.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Vermont[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-90.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Virginia
+$Virginia[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-91.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Virginia[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-92.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Washington
+$Washington[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-93.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Washington[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-94.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$`West Virginia`
+$`West Virginia`[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-95.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`West Virginia`[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-96.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Wisconsin
+$Wisconsin[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-97.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Wisconsin[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-98.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+$Wyoming
+$Wyoming[[1]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-99.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Wyoming[[2]]</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="01_report_files/figure-html/unnamed-chunk-6-100.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="by-detailed-sectors-1" class="level3">
+<h3 class="anchored" data-anchor-id="by-detailed-sectors-1">By detailed sectors</h3>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
