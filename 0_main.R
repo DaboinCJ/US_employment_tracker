@@ -60,9 +60,9 @@ Sys.getenv("BLS_KEY")
 # 0.1 Define which ETLs to run --------------------------------------------
 
 PREVIOUS_DATA=FALSE
-NAT_1d=FALSE
+NAT_1d=TRUE
 NAT_2d=FALSE
-STA_1d=TRUE
+STA_1d=FALSE
 STA_2d=FALSE
 
 # 0.2 Load Data ----------------------------------
