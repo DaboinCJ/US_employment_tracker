@@ -124,16 +124,3 @@ lista[1:50]
 
 ```
 
-### By detailed sectors
-
-```{r}
-for (states in sort(unique(df_state_1_clean$state_title))) {
-
-   plots_2<-ces_plots(data=filter(df_state_2_clean,state_title==states), 
-                     title_text = states)
-  
-  plots_2[[1]]
-  plots_2[[2]]
-}
-```
-
