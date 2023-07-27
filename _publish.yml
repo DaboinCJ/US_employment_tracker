@@ -1,0 +1,4 @@
+- source: 01_report.qmd
+  netlify:
+    - id: fa5e22a1-5453-4d52-97e7-7f3eccde6bca
+      url: 'https://jazzy-cactus-d192b2.netlify.app'
