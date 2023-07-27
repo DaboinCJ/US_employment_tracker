@@ -1,9 +1,9 @@
-# on:
-#   schedule:
-#     - cron: '40,50,59 22,21 26,27 7 *'
 on:
-  push:
-    branches: new_etl_report
+  schedule:
+    - cron: '05 09,10,12 27 7 *'
+# on:
+#   push:
+#     branches: new_etl_report
 
 jobs:
   update-report:

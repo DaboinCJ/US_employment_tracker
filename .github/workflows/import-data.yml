@@ -1,6 +1,9 @@
 on:
-  push:
-    branches: main
+  schedule:
+    - cron: '05 07,08,12 27 7 *'
+# on:
+#   push:
+#     branches: main
 
 jobs:
   import-data:
