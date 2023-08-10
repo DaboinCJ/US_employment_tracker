@@ -125,7 +125,7 @@ lista[[states]]<-  list(plots_1[[2]],plots_2[[2]])
 }
 
 
-lista[1:51]
+lista[1:4]
 
 ```
 
