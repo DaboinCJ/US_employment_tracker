@@ -60,11 +60,11 @@ Sys.getenv("BLS_KEY")
 
 # 0.1 Define which ETLs to run --------------------------------------------
 
-PREVIOUS_DATA=FALSE
+PREVIOUS_DATA=TRUE
 NAT_1d=TRUE
-NAT_2d=FALSE
-STA_1d=FALSE
-STA_2d=FALSE
+NAT_2d=TRUE
+STA_1d=TRUE
+STA_2d=TRUE
 
 # 0.2 Load Data ----------------------------------
 
@@ -122,10 +122,14 @@ df_1 <- bls_api(naics_1_codes_api$code,
 df_1_clean<-df_1 %>%
   left_join(select(naics_1_codes_api,code,naics_code,industry_name,display_level),by=c("seriesID"='code'))
 
-#original
-# write_rds(df_1_clean,"data/df_1_clean.rds")
-#marginal
-write_rds(df_1_clean,"data/df_1_clean_new.rds")
+  if(PREVIOUS_DATA==FALSE){
+    # its the first time you save this data
+    write_rds(df_1_clean,"data/df_1_clean.rds")
+  } else{
+    # you've already save a chunk of data an want to add a new one
+    write_rds(df_1_clean,"data/df_1_clean_new.rds")
+  } 
+
 }
 
 if(NAT_2d==TRUE){
@@ -139,22 +143,46 @@ if(NAT_2d==TRUE){
     left_join(select(naics_2_codes_api,code,naics_code,industry_name,display_level),
               by=c("seriesID"='code'))
 
-#original
-# write_rds(df_2_clean,"data/df_2_clean.rds")
-#marginal
-write_rds(df_2_clean,"data/df_2_clean_new.rds")
-write_rds(max(df_2_clean$year),"data/nat_latest_year_updatefromhere.rds")  
+  if(PREVIOUS_DATA==FALSE){
+      # its the first time you save this data
+     write_rds(df_2_clean,"data/df_2_clean.rds")
+    } else{
+      # you've already save a chunk of data an want to add a new one
+    write_rds(df_2_clean,"data/df_2_clean_new.rds")
+    }
+  # a record of the latest period in your data
+  write_rds(max(df_2_clean$year),"data/nat_latest_year_updatefromhere.rds")  
 }
+
 
 ## 2.2 State-wise CES by SECTOR------------------------------------------------------
 sta_latest_year<-read_rds("data/sta_latest_year_updatefromhere.rds")
-
+# sta_latest_year<-2019
 if(STA_1d==TRUE){
-df_state_1 <- bls_api(all_series_state_1,
-                      startyear = sta_latest_year, endyear = year(Sys.Date()),
-                      Sys.getenv("BLS_KEY"),catalog = TRUE) %>%
-  # Add time-series dates
-  dateCast()
+# the api procesess 50 series at a time, so we must split requeest in batches
+  
+df_states_1<-list() # list storing the results of each batch
+index_list<-0       # index for reference
+
+for (i in list(c(1:50),
+               c(1:50)+50,
+               c(1:50)+50*2,
+               c(1:50)+50*3,
+               c(201:204) # 5 batches because there are 204 series
+               ) ){
+  index_list<-index_list+1
+  print(paste("round",index_list))
+  print(paste("downloading series",all_series_state_1[i]))
+  
+  df_states_1[[index_list]]<-bls_api(all_series_state_1[i],
+          startyear = sta_latest_year, endyear = year(Sys.Date()),
+          Sys.getenv("BLS_KEY"),catalog = TRUE) %>%
+    # Add time-series dates
+    dateCast()
+  
+}  
+  
+df_state_1 <- do.call(rbind,df_states_1)
 
 df_state_1_clean<-df_state_1 %>%
   mutate(code=as.numeric(substr(seriesID,str_length(seriesID)-9,str_length(seriesID)-3))) %>%
@@ -163,31 +191,65 @@ df_state_1_clean<-df_state_1 %>%
   left_join(all_states_codes, by="fipstate") %>% 
   mutate(value=value*1000)
 
-## original
-# write_rds(df_state_1_clean,"data/df_state_1_clean.rds")
-## marginal
-write_rds(df_state_1_clean,"data/df_state_1_clean_new.rds")
+  if(PREVIOUS_DATA==FALSE){
+    # its the first time you save this data
+    write_rds(df_state_1_clean,"data/df_state_1_clean.rds")
+  } else{
+    # you've already save a chunk of data an want to add a new one
+    write_rds(df_state_1_clean,"data/df_state_1_clean_new.rds")
+  } 
+
 }
 
 if(STA_2d==TRUE){
-  df_state_2 <- bls_api(all_series_state_2,
-                        startyear = sta_latest_year, endyear = year(Sys.Date()), 
-                        Sys.getenv("BLS_KEY"),
-                        catalog = TRUE) %>%
-    # Add time-series dates
-    dateCast()
+  # the api procesess 50 series at a time, so we must split requeest in batches
+  
+  df_states_2<-list() # list storing the results of each batch
+  index_list<-0       # index for reference
+  
+  for (i in list(c(1:50),
+                 c(1:50)+50,
+                 c(1:50)+50*2,
+                 c(1:50)+50*3,
+                 c(1:50)+50*4,
+                 c(1:50)+50*5,
+                 c(1:50)+50*6,
+                 c(1:50)+50*7,
+                 c(1:50)+50*8,
+                 c(1:50)+50*9,
+                 c(1:50)+50*10,
+                 c(551:561) # 12 batches because there are 561 series
+  ) ){
+    index_list<-index_list+1
+    print(paste("round",index_list))
+    print(paste("downloading series",all_series_state_2[i]))
+    
+    df_states_2[[index_list]]<-bls_api(all_series_state_2[i],
+                                       startyear = sta_latest_year,
+                                       endyear = year(Sys.Date()),
+                                       Sys.getenv("BLS_KEY"),catalog = TRUE) %>%
+      # Add time-series dates
+      dateCast()
+    
+  }  
+  
+  df_state_2 <- do.call(rbind,df_states_2)
   
   df_state_2_clean<-df_state_2 %>%
     mutate(code=as.numeric(substr(seriesID,str_length(seriesID)-9,str_length(seriesID)-2))) %>%
     left_join(naics_2_codes_api,by=c("code"="industry_code")) %>% 
     mutate(fipstate=substr(seriesID,4,10)) %>% 
     left_join(all_states_codes, by="fipstate") %>% 
-    mutate(value=value*1000)
+    mutate(value=value*1000) 
   
-## original
-# write_rds(df_state_2_clean,"data/df_state_2_clean.rds")
-## marginal
-write_rds(df_state_2_clean,"data/df_state_2_clean_new.rds")
+  if(PREVIOUS_DATA==FALSE){
+    # its the first time you save this data
+    write_rds(df_state_2_clean,"data/df_state_2_clean.rds")
+  } else{
+    # you've already save a chunk of data an want to add a new one
+    write_rds(df_state_2_clean,"data/df_state_2_clean_new.rds")
+  } 
+  
 write_rds(max(df_state_2_clean$year),"data/sta_latest_year_updatefromhere.rds")
   
 }
