@@ -124,8 +124,79 @@ lista[[states]]<-  list(plots_1[[2]],plots_2[[2]])
   
 }
 
+great_lakes<-c("Illinois","Indiana","Iowa",
+               "Michigan","Minnesota","New York",
+               "Ohio","Pennsylvania", "Wisconsin")   
 
-lista[1:4]
+mideast <- c("Delaware", "District of Columbia", "Maryland")
+
+new_england <- c("Connecticut", "Maine", "Massachusetts", 
+                 "New Hampshire", "Rhode Island", "Vermont")
+
+plains <- c("Kansas", "Missouri", "Nebraska",
+            "North Dakota", "South Dakota")
+
+southeast <- c("Alabama", "Arkansas", "Florida",
+               "Georgia", "Kentucky", "Louisiana",
+               "Mississippi", "North Carolina", "South Carolina",
+               "Tennessee", "Virginia", "West Virginia")
+southwest <- c("Arizona", "New Mexico", "Oklahoma", 
+               "Texas")
+
+rocky_mountain <- c("Colorado", "Idaho", "Montana",
+                    "Utah", "Wyoming")
+
+far_west <- c("Alaska", "California", "Hawaii",
+              "Nevada", "Oregon", "Washington")
 
 ```
+
+#### Great Lakes Region
+
+```{r great_lakes}
+lista[great_lakes]
+```
+
+#### Mid East Region
+
+```{r mideast}
+lista[mideast]
+```
+
+#### New England Region
+
+```{r new_england}
+lista[new_england]
+```
+
+#### Plains Region
+
+```{r plains}
+lista[plains]
+```
+
+
+#### South East Region
+```{r southeast}
+lista[southeast]
+```
+
+#### Soth West Region
+
+```{r southwest}
+lista[southwest]
+```
+
+#### Rocky Mountains Region
+```{r rocky_mountain}
+lista[rocky_mountain]
+```
+
+#### Far West Region
+```{r far_west}
+lista[far_west]
+```
+
+
+
 
