@@ -1,10 +1,9 @@
 on:
-  schedule:
-    - cron: '10 10 10 * *'
-    # - cron: '45 11 27 * *'
-  # push:
-  #   branges: main
-      
+  push:
+    branges: main
+  # schedule:
+  #   - cron: '10 10 10 * *'
+    # - cron: '45 11 27 * *'      
 
 jobs:
   update-report:
