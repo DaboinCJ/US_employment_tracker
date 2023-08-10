@@ -54,12 +54,12 @@ nat_periods<-tibble('Last period avaliable'=max(df_1_clean$date),
            'Preliminary estimates'=paste(unique(df_1_clean[df_1_clean$footnotes=="P preliminary",]$date),collapse = ", "))
 
 # State data
-df_state_1_clean<-read_rds("data/df_state_1_clean.rds")
-df_state_2_clean<-read_rds("data/df_state_2_clean.rds")
-# df_state_1_clean<-bind_old_and_new("data/df_state_1_clean.rds",
-#                                    "data/df_state_1_clean_new.rds")
-# df_state_2_clean<-bind_old_and_new("data/df_state_2_clean.rds",
-#                                    "data/df_state_2_clean_new.rds")
+# df_state_1_clean<-read_rds("data/df_state_1_clean.rds")
+# df_state_2_clean<-read_rds("data/df_state_2_clean.rds")
+df_state_1_clean<-bind_old_and_new("data/df_state_1_clean.rds",
+                                   "data/df_state_1_clean_new.rds")
+df_state_2_clean<-bind_old_and_new("data/df_state_2_clean.rds",
+                                   "data/df_state_2_clean_new.rds")
 
 sta_periods<-tibble('Last period avaliable'=max(df_state_1_clean$date),
            'Preliminary estimates'=paste(unique(df_state_1_clean[df_state_1_clean$footnotes=="P Preliminary",]$date),collapse = ", "))

@@ -1,8 +1,8 @@
 on:
-  push:
-    branches: main
-  # schedule:
-    # - cron: '45 11 27 * *'      
+  schedule:
+    - cron: '45 11 27 * *'
+  # push:
+  #   branches: main
 
 
 jobs:
