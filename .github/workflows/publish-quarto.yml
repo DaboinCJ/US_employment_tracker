@@ -1,6 +1,8 @@
 on:
   schedule:
-    - cron: '10 10 10 * *'
+    push:
+      branges: main
+    # - cron: '10 10 10 * *'
     # - cron: '45 11 27 * *'
   # push:
   #   branges: main
