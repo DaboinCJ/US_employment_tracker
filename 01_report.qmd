@@ -105,6 +105,9 @@ sta_periods %>%
 We first show the broad view, then the detailed one.
 
 #### Work in progress...
+* Need to fix the legends.
+* Need to add seasonally-adjusted series.
+* Will add forecast
 
 ```{r, echo=TRUE}
 
